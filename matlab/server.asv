@@ -4,38 +4,36 @@ import java.io.*;
 
 serverSocket = ServerSocket(80);
 
-display('Iniciando servidor');
+display('Initialize server');
 
 try
     while(1)
         socket = serverSocket.accept();
-        display('Nueva conexion entrante');
+        display('New incoming connection');
 	in = BufferedReader(InputStreamReader(socket.getInputStream()));
-            %Leemos datos
+            %Read data
             pathstr = in.readLine();
             funcstr = in.readLine();
-            
+
                 display(char(pathstr));
                 display(char(funcstr));
-                out =PrintWriter(BufferedWriter(OutputStreamWriter(socket.getOutputStream())),true)
-		%Codigo que atiende la peticion
+                out =PrintWriter(BufferedWriter(OutputStreamWriter(socket.getOutputStream())),true);
+		%Code that attends the petition
 
-		%Establece en path de los script matlab del usuario
-        userpath(char(pathstr))
-		%Ejecuta la funcion indicada por el usuario
-		status=eval(char(funcstr));
-                userpath('reset')
+		%Sets the path of the user's matlab script
+        userpath(char(pathstr));
+		%Executes the function indicated by the user
+		eval(char(funcstr));
+        status = 'correcto';
 
-		%Devolvemos status y cerramos
+		%We return status and close
                 out.println(strcat(int2str(status),char(0)));
                 out.flush();
                 socket.shutdownOutput();
-		display('Cerrando')
-                break;
+                userpath('reset');
 
 
-
-        display('cerrando conexion con cliente');
+        display('close connection with client');
         socket.close()
     end
 catch e
