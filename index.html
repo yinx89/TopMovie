@@ -1,0 +1,109 @@
+<!doctype html>
+
+<html class="no-js" lang="en">
+    <head>
+	
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>TopMovie</title>
+		
+        <link rel="stylesheet" href="css/foundation.css" />
+        <link rel="stylesheet" href="css/estilo_index.css"/>
+        <script src="js/vendor/modernizr.js"></script>
+		
+    </head>
+    
+    <body class="index">
+	
+        <center>
+            <img height="75px" width="400px" src="img/logo_index.png">
+		</center>
+
+		<div class="row">
+			<div class="large-6 columns bloque">
+				<center> 
+					<img height="55px" width="350px" src="css/imagenes/nuevo_usuario.png">
+				</center>
+				<div class="blanco">
+					<form class= "registro" method="POST" action="registro.php" enctype="multipart/form-data">
+						<label for="name">Nombre</label>
+						<input type="text" name="name" placeholder="Nombre usuario" required>
+						<label for="ocupacion">Ocupación</label>
+						<select name="ocupacion" selected="">
+							<option value="<?php echo $ocupacion;?>" selected><?php echo $ocupacion;?></option>
+							<option value="administrator">administrator</option>
+							<option value="student">student</option>
+							<option value="educator">educator</option>
+							<option value="engineer">engineer</option>
+							<option value="technician">technician</option>
+							<option value="programmer">programmer</option>
+							<option value="entertaiment">entertaiment</option>
+							<option value="executive">executive</option>
+							<option value="scientist">scientist</option>
+							<option value="lawyer">lawyer</option>
+							<option value="writer">writer</option>
+							<option value="librarian">librarian</option>
+							<option value="homemaker">homemaker</option>
+							<option value="artist">artist</option>
+							<option value="marketing">marketing</option>
+							<option value="healthcare">healthcare</option>
+							<option value="salesman">salesman</option>
+							<option value="retired">retired</option>
+							<option value="doctor">doctor</option>
+							<option value="other">other</option>
+						</select>
+						<div class="large-6 columns">
+							<label for="edad">Edad</label>
+							<select name="edad" class="estilo" id="edad" required>
+								<script>
+									var edad = document.getElementById("edad");
+									var total = 100;
+									var cont = 1;
+									while (cont<100){
+										var option = document.createElement("option");
+										option.setAttribute("value",cont);
+										option.innerHTML=cont;
+										edad.appendChild(option);
+										cont++;
+									}
+								</script>
+							</select>
+						</div>
+						<div class = "large-6 columns">
+							<label for="sexo">Sexo</label>
+							<select class="estilo" name="sexo" required>
+								<option value="M">M</option>
+								<option value="F">F</option>
+							</select>
+						</div>
+						<label for="pwd">Contraseña</label>
+						<input type="password" name="pwd" placeholder="Contraseña" required id="pw1">                    
+						<label for="img">Foto</label>
+						<input type="file" name="img" value="Seleccione una imagen">
+						<center>
+							<input type="submit" class="button" value="Registrarse">
+						</center>
+					</form>
+				</div>
+			</div>
+			<div class="large-6 columns bloque">
+				<img height="54px" width="333px" src="css/imagenes/login.png">
+				<div class="blanco">
+					<form class= "login" method="post" action="login.php">
+						<input type="text" class="textbox" name="user" placeholder="Nombre" required>
+						<input type="password" name="pass" placeholder="Contraseña" required>
+						<input type="submit" class="button" value="Login">
+					</form>
+				</div>
+			</div>
+		</div>
+	
+		<script src="js/vendor/jquery.js"></script>
+		<script src="js/foundation.min.js"></script>
+		<script>
+		  $(document).foundation();
+		</script>
+	
+  </body>
+  
+</html>

@@ -1,0 +1,73 @@
+.table { 
+border-collapse: collapse; 
+text-align: left; 
+width: 100%; } 
+.datagrid {
+font: 12px/150% Arial,Helvetica,sans-serif;
+width: 80%;
+margin-top: 5px;
+background: #FFF none repeat scroll 0% 0%;
+overflow: hidden;
+border: 2px solid #069;
+border-radius: 20px;
+margin-bottom: 40px; }
+.table td, .table th { 
+padding: 0px 20px;}
+.table thead th {
+background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #006699), color-stop(1, #00557F) );
+background:-moz-linear-gradient( center top, #006699 5%, #00557F 100% );
+filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#006699', endColorstr='#00557F');
+background-color:#006699; 
+color:#FFFFFF; 
+font-size: 16px; 
+font-weight: bold; 
+border-left: 1px solid #0070A8; } 
+.table thead th:first-child { 
+border: none; }
+.table tbody td { 
+color: #00496B; 
+border-left: 1px solid #E1EEF4;
+font-size: 14px;
+font-weight: normal; }
+.table tbody .td { 
+background: #E1EEF4; 
+color: #00496B; }
+.table tbody td:first-child { 
+border-left: none; }
+.table tbody tr:last-child td { 
+border-bottom: none; }
+table tr th{
+    background-color: #FFF;
+    padding: 0.5625rem 0.625rem;
+    font-size: 0.875rem;
+    color: #222;
+    text-align: left;
+    border: 0px solid #00008B;
+    border-radius: 0px;
+	text-align:center;
+}
+.button:hover, .button:focus, .button:hover, .button:focus {
+    background-color: #000000;
+    color: black;
+}
+.button.round, .button.round {
+	background-color: #007095;
+    color: white;
+    border-radius: 10px;
+    margin-top: 70px;
+    border: 2px solid black;
+}
+.button:hover {
+    color: #000;
+	background-color: #FFF;
+}
+
+/* Imagen de fondo autoajustada */
+html { 
+	background: url("imagenes/fondo.jpg") no-repeat fixed center ;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	
+}

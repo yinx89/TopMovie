@@ -1,0 +1,52 @@
+/**** CSS TOP-BAR ****/
+
+.top-bar-section li.active:not(.has-form) a:not(.button) {
+    background: #000000; 
+    border-radius: 5px;
+}
+.top-bar-section li.active:not(.has-form) a:not(.button):hover {
+    color: black;
+    background: #B0C4DE;
+}
+.button {
+  border-width:  20px;
+  border-color: #000000;
+  background-color: #FFFFFF;
+}
+.button:hover{
+  background-color: #000000;
+}
+.button:focus{
+    
+  background-color: #FFFFFF;
+}
+.name img{
+    width: 150px;
+    height: 45px;
+}
+#lupa img{
+    padding-top: 5px;
+    width: 35px;
+    height: 35px;
+    margin-left: 25px;
+} 
+/**** CSS FOOTER ****/
+
+footer{
+   
+    width: 100%;
+    bottom: 0;
+    position: fixed;
+}
+.pie {
+    background-color: rgba(29, 108, 169, 0.85);
+    width: 100%;
+    text-align: center;
+     
+    
+}
+.pie h5{
+    color: white;
+    
+}
+

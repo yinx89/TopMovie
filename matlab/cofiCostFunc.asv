@@ -1,0 +1,150 @@
+function [J, grad] = cofiCostFunc(params, Y, R, num_users, num_movies, ...
+                                  num_features, lambda)
+%COFICOSTFUNC Funcion de coste del filtrado colaborativo
+%   [J, grad] = COFICOSTFUNC(params, Y, R, num_users, num_movies, ...
+%   num_features, lambda) devuelve el coste y el gradiente
+%   del problema de filtrado colaborativo
+
+% Extrae las matrices U y W de params
+X = reshape(params(1:num_movies*num_features), num_movies, num_features);
+Theta = reshape(params(num_movies*num_features+1:end), ...
+                num_users, num_features);
+
+            
+% Debes generar los siguientes valores correctamente
+J = 0;
+X_grad = zeros(size(X));
+Theta_grad = zeros(size(Theta));
+
+% ====================== TU CODIGO AQUI ======================
+% Instrucciones: Debes implementar en primer lugar la funcion de coste
+%                (sin regularizacion) para filtrado colaborativo, y comprobar
+%               que coincide con el coste indicado en la memoria. Despues de esto
+%               debes implementar el gradiente y usar checkCostFunction para 
+%               comprobar que es correcto. Finalmente, debes implementar 
+%               regularizacion.
+%
+% Notas: X - num_movies  x num_features : matriz de caracteristicas de la pelicula
+%        Theta - num_users  x num_features: matriz de parametros del usuario 
+%        Y - num_movies x num_users: matriz de puntuaciones
+%        R - num_movies x num_users: matriz en la que R(i, j) = 1 si la
+%            i-esima pelicula ha sido puntuada por el j-esimo usuario
+%
+% Debes generar las siguientes variables correctamente:
+%
+%        X_grad - num_movies x num_features: matriz con las derivadas parciales 
+%                 con respecto a cada elemento de X
+%        Theta_grad - num_users x num_features: matriz con las derivadas parciales
+%                 con respecto a cada elemento deTheta
+%
+
+% =============================================================
+
+
+% AÑADO ESTO PARA APARTADO 2.1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% OPCION 1
+
+% for i = 1:num_movies
+%     for j = 1:num_users
+%         if(R(i,j) == 1)
+%             J = J + ((Theta(j,:) * X(i,:)') - Y(i,j))^2;
+%         end
+%     end
+% end
+% J = J / 2;
+
+% OPCION 2 
+
+Error = (X*Theta'-Y).*R;
+J=sum(Error(:).^2)/2;
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% AÑADO ESTO PARA APARTADO 2.2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% OPCION 1
+
+% aux = 0;
+% for j = 1:num_users
+%     for k = 1: num_features
+%         aux = aux + Theta(j,k)^2;
+%     end
+% end
+% aux = aux * (lambda/2);
+% 
+% J = J + aux;
+% 
+% aux = 0;
+% for i = 1:num_movies
+%     for k = 1: num_features
+%         aux = aux + X(i,k)^2;
+%     end
+% end
+% aux = aux * (lambda/2);
+% 
+% J = J + aux;
+% 
+% for i = 1:num_movies
+%     for k = 1:num_features
+%         for j = 1:num_users
+%             if(R(i,j) == 1)
+%                 X_grad(i,k) = X_grad(i,k) + ((Theta(j,:) * X(i,:)') - Y(i,j))*Theta(j,k) + lambda * X(i,k);
+%             end
+%         end
+%     end
+% end
+% 
+% for j = 1:num_users
+%     for k = 1:num_features
+%         for i = 1:num_movies
+%             if(R(i,j) == 1)
+%                 Theta_grad(j,k) = Theta_grad(j,k) + ((Theta(j,:) * X(i,:)') - Y(i,j))*X(i,k) + lambda * Theta(j,k);
+%             end
+%         end
+%     end
+% end
+
+
+% OPCION 2 
+
+for i = 1:num_movies
+    for k = 1:num_features
+        X_grad(i,k) = Error(i,:)*Theta(:,k)+lambda*X(i,k);
+    end
+end
+
+X_grad = Error * Theta +lambda*X;
+
+for j = 1:num_users
+    for k = 1:num_features
+        Theta_grad(j,k) = Error(:,j)'*X(:,k)+lambda*Theta;
+    end
+end
+
+Theta_grad = Error' *X +lambda*Theta(j,k);
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% AÑADO ESTO PARA APARTADO 2.3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+reg_factor = sum(Theta(:).^2)+ sum(X(:).^2);
+
+J = J + lambda * reg_factor/2;
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% AÑADO ESTO PARA APARTADO 2.4 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% En X_grad(i,k) añadir "+lambda*X(i,k)"
+% En Theta_grad(j,k) añadir "+lambda*Theta"
+% En X_grad añadir "+lambda*X(i,k)"
+% En Theta_grad añadir "+lambda*Theta"
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+grad = [X_grad(:); Theta_grad(:)];
+
+end

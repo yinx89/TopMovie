@@ -1,0 +1,122 @@
+/* estilo PANTALLA DE INICIO*/
+body {
+
+}   
+.row{
+	display: flex;
+	width:50%;
+	font-size:1em;
+	font-color:#ffffff;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 0px 340px;
+}
+.bloque{
+	  padding: 10px;
+	  font-family: "Street";
+  margin: 10px;
+  background-color: white;
+  display: block;
+  background-color: rgba(29, 108, 169, 0.8);
+	border-radius: 26px 26px 26px 26px;
+  -moz-border-radius: 26px 26px 26px 26px;
+  -webkit-border-radius: 26px 26px 26px 26px;
+  border: 2px outset #000000;
+  -webkit-box-shadow: 9px 10px 5px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 9px 10px 5px 0px rgba(0,0,0,0.75);
+box-shadow: 9px 10px 5px 0px rgba(0,0,0,0.75);
+width:auto;
+heigth:200;
+}
+
+.blanco{
+	background-color: white;
+padding: 10px;
+  margin: 10px;
+  background-color: white;
+  display: block;
+	border-radius: 26px 26px 26px 26px;
+  -moz-border-radius: 26px 26px 26px 26px;
+  -webkit-border-radius: 26px 26px 26px 26px;
+  border: 2px outset #000000;
+  -webkit-box-shadow: 9px 10px 5px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 9px 10px 5px 0px rgba(0,0,0,0.75);
+box-shadow: 9px 10px 5px 0px rgba(0,0,0,0.75);
+}
+
+.textbox{
+  border: 1px solid #DBE1EB;
+  font-size: 18px;
+  font-family: Arial, Verdana;
+  padding-left: 7px;
+  padding-right: 7px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -o-border-radius: 4px;
+  background: #FFFFFF;
+  background: linear-gradient(left, #FFFFFF, #F7F9FA);
+  background: -moz-linear-gradient(left, #FFFFFF, #F7F9FA);
+  background: -webkit-linear-gradient(left, #FFFFFF, #F7F9FA);
+  background: -o-linear-gradient(left, #FFFFFF, #F7F9FA);
+  color: #2E3133;
+}
+
+.textbox:focus{
+  color: #2E3133;
+  border-color: #FBFFAD;
+  }
+  
+.button{
+  border: 1px solid #DBE1EB;
+  font-size: 15px;
+  font-family: Arial, Verdana;
+  padding-left: 7px;
+  padding-right: 7px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -o-border-radius: 4px;
+  background: #4972B5;
+  background: linear-gradient(left, #4972B5, #618ACB);
+  background: -moz-linear-gradient(left, #4972B5, #618ACB);
+  background: -webkit-linear-gradient(left, #4972B5, #618ACB);
+  background: -o-linear-gradient(left, #4972B5, #618ACB);
+  color: #FFFFFF;
+}
+
+   
+
+.button:hover{
+background: #365D9D;
+background: linear-gradient(left, #365D9D, #436CAD);
+background: -moz-linear-gradient(left, #365D9D, #436CAD);
+background: -webkit-linear-gradient(left, #365D9D, #436CAD);
+background: -o-linear-gradient(left, #365D9D, #436CAD);
+color: #FFFFFF;
+border-color: #FBFFAD;
+}
+  
+.estilo {
+width: 100px;
+padding: 5px;
+font-size: 12px;
+border: 1px solid #ccc;
+height: 25px;
+background-color:#ddd;
+}
+
+
+/* Imagen de fondo autoajustada */
+html { 
+	background: url("imagenes/fondo_index.jpg") no-repeat fixed center ;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
