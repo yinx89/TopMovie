@@ -16,24 +16,24 @@ props.setProperty('password', password);
 con = driver.connect(url,props);
 
 
-%Preparamos para multiples inserciones
+%We prepare for multiple insertions
 con.setAutoCommit(false);
-%Preparamos una consulta parametrizada
+%We prepare a parameterized query
 query='INSERT INTO recs (user_id, movie_id, rec_score, time) VALUES(?, ?, ?,NOW()) ON DUPLICATE KEY UPDATE  rec_score=VALUES(rec_score)'
 st = con.prepareStatement(query);
-%Añadimos lotes
+%We add lots
 for i=1:length(my_predictions)
     st.setInt(1,userid);
     st.setInt(2,i);
     st.setDouble(3,my_predictions(i));
     st.addBatch();
 end
-%Ejecutamos consulta
+%Execute query
 num_updated=st.executeBatch()
 con.commit();
 try st.close(); catch, end
 
-%Cerramos
+%Close
 
 try con.closeAllStatements(); catch, end
 try con.close(); catch, end
