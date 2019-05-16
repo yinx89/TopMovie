@@ -8,18 +8,18 @@
 1.1. [URL de Acceso a la aplicación	](#URLAcceso)  
 2.	[Lógica de la aplicación](#Logica)  
 2.1.	[Página de inicio (index.html)](#index)    
-2.1.1.	[Función “registro.php”](#registro)  
-2.1.2.	[Función “login.php”](#login)  
-2.2.	[Catálogo (catalogo.php)](#catalogo)  
-2.2.1.	[Función “tablaPeliculas.php”](#tablaPeliculas)  
-2.3.	[Información de película (película.php)](#pelicula)  
-2.3.1.	[Función “valorar.php”](#valorar)  
-2.3.2.	[Función “comentar.php”](#comentar)  
-2.4.	[Información de usuario (usuario.php)](#usuario)  
-2.4.1.	[Función “modificar_datos.php”](#modificar_datos)  
-2.5.	[Recomendaciones (Recomendacion.php)](#Recomendacion)  
-2.6.	[Formato y estilo](#formato)  
-2.7.	[Funciones genéricas](#genericas)  
+2.2.	[Función “registro.php”](#registro)  
+2.3.	[Función “login.php”](#login)  
+2.4.	[Catálogo (catalogo.php)](#catalogo)  
+2.5.	[Función “tablaPeliculas.php”](#tablaPeliculas)  
+2.6.	[Información de película (película.php)](#pelicula)  
+2.7.	[Función “valorar.php”](#valorar)  
+2.8.	[Función “comentar.php”](#comentar)  
+2.9.	[Información de usuario (usuario.php)](#usuario)  
+2.10.	[Función “modificar_datos.php”](#modificar_datos)  
+2.11.	[Recomendaciones (Recomendacion.php)](#Recomendacion)  
+2.12.	[Formato y estilo](#formato)  
+2.13.	[Funciones genéricas](#genericas)  
 3.	[Diseño de la base de datos](#bbdd)  
 4.	[Algoritmo, interfaz y funciones MATLAB](#algoritmo)  
 5.	[Funcionalidades adicionales implementadas](#adicionales)  
@@ -64,7 +64,7 @@ Al acceder a la aplicación web se muestra la página de inicio (index.html) en 
 
 <a name="registro"/>  
 
-### 2.1.1	Función “registro.php”  
+### 2.2	Función “registro.php”  
 
 En esta función se establece la conexión a la base de datos y se recogen los datos de $_POST para su posterior inserción en la base de datos.  
 
@@ -81,7 +81,7 @@ Los permisos de la carpeta /img han tenido que ser modificados para que se pudie
   
 <a name="login"/>  
 
-### 2.1.2	Función “login.php”  
+### 2.3	Función “login.php”  
 
 Esta otra función básicamente se resume en comprobar si los datos que se han introducido y son guardados en una cookie concuerdan con alguno de los usuarios de la base de datos y así dar acceso a la vista del catálogo.  
   
@@ -89,7 +89,7 @@ Esta otra función básicamente se resume en comprobar si los datos que se han i
    
 <a name="catalogo"/>  
 
-### 2.2	Catálogo (catalogo.php)  
+### 2.4	Catálogo (catalogo.php)  
   
 Una vez se realiza el inicio de sesión, se accede a la vista “catalogo.php” donde se muestra información de cada una de las películas en una tabla con posibilidad de ordenarla: por defecto, por orden alfabético, por fecha de estreno o por puntuación ponderada. La tabla muestra hasta 10 películas por página con la posibilidad de navegar entre ellas con dos botones de control en la parte inferior.    
   
@@ -99,7 +99,7 @@ En primer lugar comprueba si el límite de tiempo marcado en la cookie ha sido s
    
 <a name="tablaPeliculas"/>  
 
-### 2.2.1	Función “tablaPeliculas.php”  
+### 2.5	Función “tablaPeliculas.php”  
 
 Esta función es llamada desde peticionAjax.js con un filtro determinado con el que ordenará la tabla y la página en la que se encuentra.
   
@@ -113,7 +113,7 @@ Cabe destacar que en la visualización de la tabla se ha optado por reducir el t
   
 <a name="pelicula"/>  
 
-### 2.3	Información de película (película.php)  
+### 2.6	Información de película (película.php)  
 
 Una vez es seleccionada una película se accede a la vista “película.php” y se muestra información detallada con el título, fecha de estreno, enlace a IMDB, puntuaciones generales además de ofrecer la posibilidad de puntuar, comentar y visualizar todos los comentarios sobre la película.  
   
@@ -121,7 +121,7 @@ Una vez es seleccionada una película se accede a la vista “película.php” y
   
 <a name="valorar"/>  
 
-### 2.3.1	Función “valorar.php”  
+### 2.7	Función “valorar.php”  
 
 Como se ha comentado anteriormente, una vez se realiza la valoración de la película se deberá establecer un nuevo valor como media total de las películas además de actualizar el valor medio y ponderado de la película votada. De esta manera, cada vez que el usuario vota, en segundo plano se actualizan los datos de la media de la película y la media total de las películas, que se considera necesario para tener una media ponderada actualizada y real en cada visualización.  
   
@@ -129,13 +129,13 @@ Como se ha comentado anteriormente, una vez se realiza la valoración de la pel�
   
 <a name="comentar"/>   
 
-### 2.3.2	Función “comentar.php”   
+### 2.8	Función “comentar.php”   
   
 Sencillamente la función recoge los datos del formulario y los inserta en la base de datos.   
   
 <a name="usuario"/>  
 
-### 2.4	Información de usuario (usuario.php)  
+### 2.9	Información de usuario (usuario.php)  
 
 Se accede desde la sección de cabecera en la parte superior derecha y muestra en primer lugar los datos de usuario junto con imagen de perfil y ofrece la posibilidad de modificar los datos personales y la contraseña. En segundo lugar muestra una serie de estadísticas para que sirvan de valoración ya que se entiende que el usuario puede cambiar de opinión respecto a una película y de esta forma tendría una visión global de todas las películas comentadas y votadas y poder modificar una votación realizada o insertar nuevos comentarios. Por último se ofrece la posibilidad de generar una lista personalizada de recomendaciones, tal y como se describe en el apartado 2.5.
    
@@ -143,13 +143,13 @@ Se accede desde la sección de cabecera en la parte superior derecha y muestra e
   
 <a name="modificar_datos"/>   
 
-### 2.4.1	Función “modificar_datos.php”  
+### 2.10	Función “modificar_datos.php”  
 
 Con los valores insertados se actualiza la base de datos.  
   
 <a name="Recomendacion"/>  
 
-### 2.5	Recomendaciones (Recomendacion.php)  
+### 2.11	Recomendaciones (Recomendacion.php)  
 
 Se accede desde la sección de cabecera y muestra una tabla con la información de las 10 películas con mejor puntuación que genera el algoritmo de filtrado colaborativo teniendo en cuenta los intereses del usuario y de perfiles de usuario similares. Para generar las recomendaciones se debe accionar un botón que se encuentra en la parte superior de la pantalla y el algoritmo se pondrá a trabajar en segundo plano en el servidor para que, pasado un tiempo de procesado en el que el usuario puede seguir navegando por la web, se muestre en este apartado una nueva recomendación personalizada.  
   
@@ -157,7 +157,7 @@ Se accede desde la sección de cabecera y muestra una tabla con la información 
    
 <a name="formato"/>   
 
-### 2.6	Formato y estilo  
+### 2.12	Formato y estilo  
 
 Una vez la lógica de la aplicación ha sido completada se pasa a dar formato y estilo a cada “vista” o sección. Cada sección tiene en común con el resto los apartados de cabecera y pie de página. Se utiliza el framework “Foundation” como se detallará posteriormente ya que realiza un buen trabajo con clases CSS, por su facilidad de uso y porque el aspecto final de la aplicación web además de su adaptabilidad resulta notable.   
 
@@ -165,7 +165,7 @@ Además del framework se utilizan diversas hojas de estilo CSS para cada secció
   
 <a name="genericas"/>   
 
-### 2.7	Funciones genéricas   
+### 2.13	Funciones genéricas   
   
 En cada sección se han utilizado funciones genéricas que facilitaban la implementación de secciones como la de cabecera y pie de página en cada una de ellas. Además se ha realizado la función genérica encargada de conectar a la base de datos.   
   
