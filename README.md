@@ -241,24 +241,24 @@ The use of a predefined frame helps to have an aesthetic and structural basis of
 <a name="anexo1"/>  
 
 ### 7.1	Annex 1 – List of php functions implemented  
-
-buscar.php
-cabecera.php
-catalogo.php
-cerrar_sesion.php
-comentar.php
-conexión.php
-dorec.php
-login.php
-modificar_datos.php
-película.php
-pie.php
-Recomendación.php
-registro.php
-tablaPeliculas.php
-update_user.php
-usuario.php
-valorar.php
+  
+buscar.php  
+cabecera.php  
+catalogo.php  
+cerrar_sesion.php  
+comentar.php  
+conexión.php  
+dorec.php  
+login.php  
+modificar_datos.php  
+película.php  
+pie.php  
+Recomendación.php  
+registro.php  
+tablaPeliculas.php  
+update_user.php  
+usuario.php  
+valorar.php  
   
 <a name="anexo2"/>   
 
