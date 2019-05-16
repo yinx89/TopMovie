@@ -2,7 +2,11 @@
 
 ![Screenshot](img/1.png) 
 
+[1. Introduccion](#Introduccion)  
+
+
 Tabla de contenido
+
 
 1.	Introducción	
 1.1	URL de Acceso a la aplicación	
@@ -35,7 +39,7 @@ Tabla de contenido
 
 
 
-
+<a name="Introduccion"/>
 1.	Introducción
 La aplicación “TopMovie” ha sido desarrollada con el fin de ofrecer al usuario un servicio de información sobre un catálogo de películas. La interacción del usuario con la aplicación generará al mismo tiempo una serie de recomendaciones basadas en el algoritmo de filtrado colaborativo a través de un sistema de votación, además de la posibilidad de escribir comentarios o críticas sobre la película en cuestión.
 El desarrollo de la lógica de aplicación podría resumirse en la utilización de funciones que tienen como finalidad ofrecer al usuario cada una de las necesidades requeridas para su correcto funcionamiento. 
