@@ -5,7 +5,8 @@
 ## Table of Contents
 
 1. [Introduction](#Introduccion)  
-1.1. [Application Access URL](#URLAcceso)  
+1.1. [Algorithm](#algorithm)  
+1.2. [Weighted score: Bayesian Ranking](#ponderada)
 2.	[Application logic](#Logica)  
 2.1.	[Home page (index.html)](#index)    
 2.2.	[Function “registro.php”](#registro)  
@@ -39,20 +40,36 @@
 
 The "TopMovie" application has been developed in order to offer the user an information service on a film catalogue. The user interaction with the application will generate at the same time recommendations based on the algorithm of collaborative filtering through a voting system, in addition to the possibility of writing comments or reviews on the film.  
 
+In order to be able to make the application, a catalogue of films and users has been compiled, as well as scores from different sources. The Movielens 10k dataset (https://grouplens.org/datasets/movielens/) has been used, supplemented with information extracted from IMDB (https://www.imdb.com/) and with an automatically generated list of fictitious names.  
+
 The development of the application logic could be summarized in the use of functions that aim to offer the user each of the needs required for its proper functioning.   
+  
+<a name="algorithm"/>
 
-<a name="URLAcceso"/>
+### 1.1	Algorithm	  
+  
+The collaborative filtering algorithm is used to generate the recommendations. A script uses a TCP server in MATLAB that receives requests from a PHP script that sends it the absolute path in which the necessary MATLAB scripts are found, as well as the function to be executed that implements the collaborative filtering algorithm, including the necessary parameters. The server invokes the MATLAB script corresponding to the algorithm and finally obtains and updates the necessary data directly from the database through SQL queries.
+  
+The function that implements the algorithm constructs the R, Y and movieList matrices from the database data through the getData() function. Finally the data is saved in the DB through updateRecommendation().  
 
-### 1.1	Application Access URL	  
+A quick way to implement the server is to use Java code directly on MATLAB. MATLAB runs a Java virtual machine and allows you to run Java code. MATLAB's TCP server running can hear port 4450, but we must be clear that this port is not blocked by the firewall and that the server does not support concurrent requests. The server expects to receive a string of characters with the absolute path to the directory in which the MATLAB scripts are located and a string of characters with the invocation of the function to be executed ending with the carriage return "\r\n". Thus, the server separates the two fields, since the Java readLine() function is used to receive the data from the server. Finally, it is concatenated with chr(0) to ensure that the sending is forced and received correctly.
 
-En primer lugar, la aplicación web está almacenada en el servidor del laboratorio de prácticas de la asignatura y el acceso a la aplicación se realiza a través del siguiente enlace:  
-http://labit601.upct.es/~ai6/videoGMA  
+<a name="ponderada"/>
+
+### 1.2	Weighted score: Bayesian Ranking	
+
+This type of application presents the problem of how to add scores to be able to compare one movie with another. For example, is a film rated better with 356 votes and an average of 3.8 than a film with 10 votes and an average of 4.8?
+The answer to this question is relatively complex and you may find a very interesting discussion. So I decide to use the weighting method described below. To obtain a weighted score, the following formula will be applied to each film i:
+
+ponderada_i = (( N * R ) + (n_i * r_i)) / ( N + n_i)
+
+where N is the total number of movies, R is the average score of all movies, n_i is the number of scores of the movie i and r_i is the average score of the movie i.
   
 <a name="Logica"/>
 
 ### 2.	Application logic 
 
-Then, each of the functionalities is developed in detail and the solution is justified.
+Then, each of the functionalities is developed in detail and the solution is justified. The application logic queries the database using SQL, inserting the necessary PHP variables.
 
 <a name="index"/>
 
@@ -174,7 +191,17 @@ On the other hand, common CSS style sheets are used for a standard view of each 
 
 ### 3.	Database design  
 
-Starting from the initial structure of the database, a number of changes are made.   
+Phpmyadmin is used through XAMPP. 
+
+* genre table: name of a film genre and associated genre identifier.  
+* movie table: film identifier, title, release date, URL in IMDB, name of the associated image and description.  
+* moviecomments table: film identifier, user identifier and text comment.  
+* moviegenre table: film identifier and 19 fields that are worth 1 if the film is labeled within the genre (see genre table) and 0 otherwise.  
+* recs table: user identifier, movie identifier, recommendation for the user and timestamp with the value of the date on which the recommendation was created.    
+* users table: user ID, name, age, gender, occupation, profile image path and password.  
+* user_score table: user ID, film identifier, user-given score and timestamp with the value of the date on which the score was marked. 
+
+Starting from the initial structure of the database, a number of changes are made to improve the design.   
 
 The first is the insertion of a new table called "media" which aims to offer simplicity when sorting films by weighted score. The table would look like this:  
   
@@ -283,3 +310,4 @@ Use of Foundation - http://cubemedia.co/responsive-instalando-foundation-css/
 Onkeyup search - http://www.w3schools.com/ajax/ajax_php.asp  
 Dropdown in Foundation  - http://foundation.zurb.com/sites/docs/v/5.5.3/components/dropdown.html  
 Frameworks - http://www.awwwards.com/what-are-frameworks-22-best-responsive-css-frameworks-for-web-design.html  
+Java classes and methods into MATLAB - http://es.mathworks.com/help/matlab/matlab_external/bringing-java-classes-and-methods-into-matlab-workspace.html)  
